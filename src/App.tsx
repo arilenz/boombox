@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import { Button } from '@/components/ui/button';
+import React, { useEffect, useRef } from "react";
+import { Button } from "@/components/ui/button";
 
 export default function App() {
   const audioRef = useRef(null);

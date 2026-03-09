@@ -1,6 +1,6 @@
-const { contextBridge, ipcRenderer } = require('electron');
+const { contextBridge, ipcRenderer } = require("electron");
 
-contextBridge.exposeInMainWorld('electronAPI', {
+contextBridge.exposeInMainWorld("electronAPI", {
   onKeyPressed: (callback) =>
-    ipcRenderer.on('key-pressed', (_event, keycode) => callback(keycode)),
+    ipcRenderer.on("key-pressed", (_event, keycode) => callback(keycode)),
 });

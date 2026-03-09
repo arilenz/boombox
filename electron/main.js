@@ -1,6 +1,6 @@
-const { app, BrowserWindow } = require('electron');
-const path = require('path');
-const { uIOhook } = require('uiohook-napi');
+const { app, BrowserWindow } = require("electron");
+const path = require("path");
+const { uIOhook } = require("uiohook-napi");
 
 let mainWindow;
 
@@ -12,7 +12,7 @@ function createWindow() {
     height: 200,
     resizable: true,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
+      preload: path.join(__dirname, "preload.js"),
       contextIsolation: true,
       nodeIntegration: false,
     },
@@ -22,7 +22,7 @@ function createWindow() {
     mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL);
   } else {
     mainWindow.loadFile(
-      path.join(__dirname, '..', 'dist-renderer', 'index.html'),
+      path.join(__dirname, "..", "dist-renderer", "index.html"),
     );
   }
 
@@ -32,19 +32,19 @@ function createWindow() {
 app.whenReady().then(() => {
   createWindow();
 
-  uIOhook.on('keydown', (e) => {
+  uIOhook.on("keydown", (e) => {
     if (mainWindow) {
-      mainWindow.webContents.send('key-pressed', e.keycode);
+      mainWindow.webContents.send("key-pressed", e.keycode);
     }
   });
 
   uIOhook.start();
 });
 
-app.on('will-quit', () => {
+app.on("will-quit", () => {
   uIOhook.stop();
 });
 
-app.on('window-all-closed', () => {
+app.on("window-all-closed", () => {
   app.quit();
 });
