@@ -13,7 +13,7 @@ export default function App() {
 
   useEffect(() => {
     if (window.electronAPI) {
-      window.electronAPI.onKeyPressed((_keycode) => {
+      window.electronAPI.onKeyPressed(() => {
         // TODO: map specific keycodes to specific sounds
         playSound();
       });
