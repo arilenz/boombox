@@ -11,12 +11,5 @@ export default tseslint.config(
     rules: reactHooks.configs.recommended.rules,
   },
   prettier,
-  {
-    files: ["src/main.js", "src/preload.js"],
-    rules: {
-      "@typescript-eslint/no-require-imports": "off",
-      "no-undef": "off",
-    },
-  },
-  { ignores: ["dist-renderer/", "dist/", ".agents/"] },
+  { ignores: ["dist-renderer/", "dist/"] },
 );
