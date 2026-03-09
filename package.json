@@ -1,0 +1,27 @@
+{
+  "name": "electron-sound-app",
+  "version": "1.0.0",
+  "main": "src/main.js",
+  "author": "artya",
+  "description": "Simple sound player app",
+  "scripts": {
+    "start": "electron .",
+    "build:win": "electron-builder --win portable",
+    "dev": "bash scripts/dev.sh"
+  },
+  "build": {
+    "appId": "com.artya.soundapp",
+    "win": {
+      "target": "portable"
+    },
+    "files": [
+      "src/main.js",
+      "src/index.html",
+      "beep.wav"
+    ]
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^26.0.0"
+  }
+}
