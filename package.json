@@ -1,7 +1,7 @@
 {
   "name": "boombox",
   "version": "1.0.0",
-  "main": "src/main.js",
+  "main": "electron/main.js",
   "author": "artya",
   "description": "Discord-like app with heavy sound effects features",
   "scripts": {
@@ -20,8 +20,8 @@
       "target": "portable"
     },
     "files": [
-      "src/main.js",
-      "src/preload.js",
+      "electron/main.js",
+      "electron/preload.js",
       "dist-renderer/**",
       "beep.wav",
       "node_modules/uiohook-napi/**",
@@ -64,8 +64,11 @@
     "uiohook-napi": "^1.5.4"
   },
   "lint-staged": {
-    "*.{ts,tsx,js}": [
+    "src/**/*.{ts,tsx,js}": [
       "eslint --fix",
+      "prettier --write"
+    ],
+    "electron/**/*.js": [
       "prettier --write"
     ],
     "*.{json,css,html}": [

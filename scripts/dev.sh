@@ -19,10 +19,10 @@ fi
 
 # Remove asar and copy fresh app files
 rm -f "$WIN_DIR/resources/app.asar"
-mkdir -p "$WIN_DIR/resources/app/src"
+mkdir -p "$WIN_DIR/resources/app/electron"
 mkdir -p "$WIN_DIR/resources/app/dist-renderer"
-cp src/main.js "$WIN_DIR/resources/app/src/"
-cp src/preload.js "$WIN_DIR/resources/app/src/"
+cp electron/main.js "$WIN_DIR/resources/app/electron/"
+cp electron/preload.js "$WIN_DIR/resources/app/electron/"
 cp -r dist-renderer/* "$WIN_DIR/resources/app/dist-renderer/"
 cp package.json "$WIN_DIR/resources/app/"
 
