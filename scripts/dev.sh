@@ -6,11 +6,14 @@ cd "$(dirname "$0")/.."
 npx vite build
 
 # Sync to Windows
-WIN_DIR="/mnt/c/Users/artye/sound-app"
+WIN_DIR="/mnt/c/Users/artye/boombox"
 mkdir -p "$WIN_DIR"
 
 # Copy Electron runtime (first time only)
-if [ ! -f "$WIN_DIR/electron-sound-app.exe" ]; then
+if [ ! -f "$WIN_DIR/boombox.exe" ]; then
+  if [ ! -d "dist/win-unpacked" ]; then
+    npx electron-builder --win --dir
+  fi
   cp -r dist/win-unpacked/* "$WIN_DIR/"
 fi
 
@@ -29,5 +32,5 @@ cp -r node_modules/uiohook-napi "$WIN_DIR/resources/app/node_modules/"
 cp -r node_modules/node-gyp-build "$WIN_DIR/resources/app/node_modules/"
 
 # Launch
-cmd.exe /c C:\\Users\\artye\\sound-app\\electron-sound-app.exe 2>/dev/null &
+cmd.exe /c C:\\Users\\artye\\boombox\\boombox.exe 2>/dev/null &
 echo "Launched."

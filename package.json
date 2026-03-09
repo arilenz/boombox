@@ -1,12 +1,12 @@
 {
-  "name": "electron-sound-app",
+  "name": "boombox",
   "version": "1.0.0",
   "main": "src/main.js",
   "author": "artya",
-  "description": "Simple sound player app",
+  "description": "Discord-like app with heavy sound effects features",
   "scripts": {
     "start": "vite build && electron .",
-    "build:win": "vite build && electron-builder --win portable",
+    "build:win": "vite build && electron-builder --win --dir",
     "dev:wsl": "bash scripts/dev-wsl.sh",
     "dev:win": "bash scripts/dev.sh",
     "lint": "eslint src/",
@@ -14,7 +14,8 @@
     "prepare": "husky"
   },
   "build": {
-    "appId": "com.artya.soundapp",
+    "appId": "com.artya.boombox",
+    "productName": "boombox",
     "win": {
       "target": "portable"
     },
