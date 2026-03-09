@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import './App.css';
+import { Button } from '@/components/ui/button';
 
 export default function App() {
   const audioRef = useRef(null);
@@ -18,10 +18,14 @@ export default function App() {
   }, []);
 
   return (
-    <div className="container">
+    <div className="dark flex flex-col items-center justify-center h-screen bg-background text-foreground">
       <audio ref={audioRef} src="./beep.wav" />
-      <button onClick={playSound}>Play Sound</button>
-      <p className="hint">Or press Ctrl+Shift+S (even when unfocused)</p>
+      <Button size="lg" onClick={playSound}>
+        Play Sound
+      </Button>
+      <p className="mt-4 text-sm text-muted-foreground">
+        Or press Ctrl+Shift+S (even when unfocused)
+      </p>
     </div>
   );
 }
