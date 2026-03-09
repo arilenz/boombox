@@ -3,25 +3,32 @@ const path = require('path');
 
 let mainWindow;
 
+const isDev = process.env.VITE_DEV_SERVER_URL !== undefined;
+
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 300,
     height: 200,
-    resizable: false,
+    resizable: true,
     webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false,
+      preload: path.join(__dirname, 'preload.js'),
+      contextIsolation: true,
+      nodeIntegration: false,
     },
   });
 
-  mainWindow.loadFile(path.join(__dirname, 'index.html'));
+  if (isDev) {
+    mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL);
+  } else {
+    mainWindow.loadFile(path.join(__dirname, '..', 'dist-renderer', 'index.html'));
+  }
+
   mainWindow.setMenuBarVisibility(false);
 }
 
 app.whenReady().then(() => {
   createWindow();
 
-  // Global shortcut works even when app is out of focus
   globalShortcut.register('CommandOrControl+Shift+S', () => {
     if (mainWindow) {
       mainWindow.webContents.send('play-sound');
