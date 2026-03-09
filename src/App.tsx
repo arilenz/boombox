@@ -13,7 +13,10 @@ export default function App() {
 
   useEffect(() => {
     if (window.electronAPI) {
-      window.electronAPI.onPlaySound(playSound);
+      window.electronAPI.onKeyPressed((_keycode) => {
+        // TODO: map specific keycodes to specific sounds
+        playSound();
+      });
     }
   }, []);
 
@@ -24,7 +27,7 @@ export default function App() {
         Play Sound
       </Button>
       <p className="mt-4 text-sm text-muted-foreground">
-        Or press Ctrl+Shift+S (even when unfocused)
+        Press any key to play (works even when unfocused)
       </p>
     </div>
   );

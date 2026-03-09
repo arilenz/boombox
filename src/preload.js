@@ -1,5 +1,5 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('electronAPI', {
-  onPlaySound: (callback) => ipcRenderer.on('play-sound', callback),
+  onKeyPressed: (callback) => ipcRenderer.on('key-pressed', (_event, keycode) => callback(keycode)),
 });

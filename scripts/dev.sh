@@ -23,6 +23,11 @@ cp src/preload.js "$WIN_DIR/resources/app/src/"
 cp -r dist-renderer/* "$WIN_DIR/resources/app/dist-renderer/"
 cp package.json "$WIN_DIR/resources/app/"
 
+# Copy native dependencies
+mkdir -p "$WIN_DIR/resources/app/node_modules"
+cp -r node_modules/uiohook-napi "$WIN_DIR/resources/app/node_modules/"
+cp -r node_modules/node-gyp-build "$WIN_DIR/resources/app/node_modules/"
+
 # Launch
 cmd.exe /c C:\\Users\\artye\\sound-app\\electron-sound-app.exe 2>/dev/null &
 echo "Launched."

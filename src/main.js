@@ -1,5 +1,6 @@
-const { app, BrowserWindow, globalShortcut } = require('electron');
+const { app, BrowserWindow } = require('electron');
 const path = require('path');
+const { uIOhook } = require('uiohook-napi');
 
 let mainWindow;
 
@@ -29,15 +30,17 @@ function createWindow() {
 app.whenReady().then(() => {
   createWindow();
 
-  globalShortcut.register('CommandOrControl+Shift+S', () => {
+  uIOhook.on('keydown', (e) => {
     if (mainWindow) {
-      mainWindow.webContents.send('play-sound');
+      mainWindow.webContents.send('key-pressed', e.keycode);
     }
   });
+
+  uIOhook.start();
 });
 
 app.on('will-quit', () => {
-  globalShortcut.unregisterAll();
+  uIOhook.stop();
 });
 
 app.on('window-all-closed', () => {

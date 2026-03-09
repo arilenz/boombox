@@ -3,7 +3,7 @@ export {};
 declare global {
   interface Window {
     electronAPI?: {
-      onPlaySound: (callback: () => void) => void;
+      onKeyPressed: (callback: (keycode: number) => void) => void;
     };
   }
 }
